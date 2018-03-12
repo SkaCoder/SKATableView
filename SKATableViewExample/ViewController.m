@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SKATableView.h"
 
 @interface ViewController ()
 
@@ -15,10 +16,33 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
+    nameArray=[[NSArray alloc]initWithObjects:@"Sachin",@"Abhi",@"Avinash",@"Rahul",@"Pratham",@"Sanjay",@"china",@"India",@"Malvan",@"Japan",@"Srilanka",@"Maharastra",@"Bihar",@"UP",@"Delhi",@"Mumbai",@"Pune",@"Nashik",@"Nagpur", nil];
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)btnShowPickerClick:(id)sender {
+    
+    SKATableView *objYHCPickerView = [[SKATableView alloc] initWithFrame:CGRectMake(112, 186, 200, 350) withNSArray:nameArray andHeadingText:@"Select Name"];
+    
+    objYHCPickerView.delegate = self;
+    
+    CGRect newFrame = objYHCPickerView.frame;
+    
+    objYHCPickerView.passRect=newFrame;
+    
+    [objYHCPickerView showTableView];
+    
+    [self.view addSubview:objYHCPickerView];
+    
+}
+
+-(void)didSelectItem:(NSString *)item{
+    main_label.text=item;
+    NSLog(@"%@",item);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
